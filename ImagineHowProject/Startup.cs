@@ -1,4 +1,6 @@
+using ImagineHowProject.Interfaces;
 using ImagineHowProject.Models;
+using ImagineHowProject.Repositories;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -23,6 +25,9 @@ namespace ImagineHowProject
             services.AddControllersWithViews();
             services.AddDbContext<ImagineHowProjectContext>
                (options => options.UseSqlServer(@"Data Source=(LocalDB)\MSSQLLocalDB;Initial Catalog=ImagineHowProjectDB;Integrated Security=True"));
+            services.AddTransient<IUnitOfWork, UnitOfWork>();
+            services.AddTransient(typeof(IGenericRepository<>), typeof(GenericRepository<>));
+            services.AddTransient(typeof(IProductRepository), typeof(ProductRepository));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
