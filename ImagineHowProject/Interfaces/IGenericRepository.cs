@@ -17,5 +17,7 @@ namespace ImagineHowProject.Interfaces
 
         void Remove(TEntity entity);
         void RemoveRange(IEnumerable<TEntity> entities);
+        void WriteToJsonFile(TEntity entity);
+        List<TEntity> ReadFromJsonFile();
     }
 }
